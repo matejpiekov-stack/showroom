@@ -14,13 +14,49 @@
             footer{
                 border-top: 1px solid #000000;
             }
+            .features{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: stretch;
+                gap: 20px;
+                margin-top: 30px;
+            }
+            .card {
+                background-color: rgb(207, 124, 55);
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                width: 300px;
+                text-align: left;
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+            body{
+                background-color: #e6c49ee5 ;
+            }
         </style>
     </head>
     <body>
         <header>
             <h1>web Name</h1>
         </header>
-        <p>daco</p>
+        <div class="features">
+            <div class="card">
+                <h2>Increase your profits</h2>
+                <p>My website addresses a common issue where people post their car on a car selling website hoping for it to be sold only for it to stay invisible. The cause for this is usually a bad description, low quality photos, and the car and enviroment generally looking bad.</p>
+            </div>
+            <div class="card">
+                <h2>Enhance your photos</h2>
+                <p>Professional looking photos are the first thing that the buyers notices and if they have a bad enviroment, poor lightning and overall just a low quality vibe they make the buyer question the price. My website allows you to change the enviroment to a nice looking beach and etc.., Improve the lightning and change the weather.  </p>
+            </div>
+            <div class="card">
+                <h2>Get an accurate price</h2>
+                <p>Many car sellers miss out on profit by pricing their car too low or they are stuck with their car listed on the marketplace because of a high price (by using my tools you can actually sell the car for higher by making your listing look more authentic). My website searches the database and gives you a very accurate price estimate</p>
+            </div>
+            <div class="card">
+                <h2>Get a professional description</h2>
+            </div>
+        </div>
         <footer>about us and stuff</footer>
     </body>
 </html>
