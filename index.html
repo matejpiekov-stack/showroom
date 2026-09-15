@@ -30,10 +30,57 @@
             }
 
             .nav-links a:hover {
-                color: #cf7c37; /* matches your card color, nice hover effect */
+                color: #cf7c37;
             } 
             footer{
                 border-top: 1px solid #000000;
+                padding: 40px 60px 20px;
+                font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            }
+            .footer-content {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+
+            .footer-col {
+                flex: 1;
+                min-width: 180px;
+            }
+
+            .footer-col h3 {
+                font-size: 22px;
+                margin-bottom: 10px;
+            }
+
+            .footer-col h4 {
+                font-size: 16px;
+                margin-bottom: 10px;
+                color: #444;
+            }
+
+            .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            }
+
+            .footer-links a {
+                text-decoration: none;
+                color: #030303;
+                font-size: 15px;
+            }
+
+            .footer-links a:hover {
+                color: #cf7c37;
+            }
+
+            .copyright {
+                text-align: center;
+                margin-top: 30px;
+                font-size: 13px;
+                color: #666;
             }
             .features{
                 display: flex;
@@ -60,6 +107,10 @@
             .pitch{
                 font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
                 font-size: 24px;
+                padding-left: 20px;
+            }
+            .pitch li{
+                margin-bottom: 10px;
             }
             h2{
                 font-size: 36px;
@@ -88,21 +139,71 @@
         <div class="features">
             <div class="card">
                 <h2>Increase your profits</h2>
-                <p class="pitch">My website addresses a common issue where people post their car on a car selling website hoping for it to be sold only for it to stay invisible. The cause for this is usually a bad description, low quality photos, and the car and enviroment generally looking bad.</p>
+                <ul class="pitch">
+                    <li>Bad description and low quality photos make listings invisible</li>
+                    <li>We fix the presentation so buyers actually notice your car</li>
+                    <li>more visibility means faster sales at better prices</li>
+                    <li>Your 10.000€ car can be sold for much more</li>
+                </ul>
             </div>
             <div class="card">
                 <h2>Enhance your photos</h2>
-                <p class="pitch">Professional looking photos are the first thing that the buyers notices and if they have a bad enviroment, poor lightning and overall just a low quality vibe they make the buyer question the price. My website allows you to change the enviroment to a nice looking beach and etc.., Improve the lightning and change the weather.  </p>
+                <ul class="pitch">
+                    <li>Photos are the first thing buyers judge - poor lightning or a messy background makes them question your price</li>
+                    <li>Swap the environment for a clean, professional setting like a beach or studio backdrop</li>
+                    <li>Improve lighting and weather conditions automatically</li>
+                    <li>Our tool puts your photos in the right order to maximize buyer engagement</li>
+                </ul>
             </div>
             <div class="card">
                 <h2>Get an accurate price</h2>
-                <p class="pitch">Many car sellers miss out on profit by pricing their car too low or they are stuck with their car listed on the marketplace because of a high price. My website searches the database and gives you a very accurate price estimate.</p>
+                <ul class="pitch">
+                    <li>Pricing too low means lost profit, pricing too high means your car sits unsold</li>
+                    <li>Our tool scans market data to estimate the right price for your car</li>
+                    <li>Sell faster without leaving money on the table</li>
+                </ul>
             </div>
             <div class="card">
                 <h2>Get a professional description</h2>
-                <p class="pitch">The description is the 3rd thing that the buyer notices, a description with very little information or generally just very little text can be one of the biggest turn-offs for drivers. Our website fixes that problem by giving the description clean points of the car information and adding a little story aswell.</p>
+                <ul class="pitch">
+                    <li>Thin, vague descriptions are one of the biggest turn-offs for buyers</li>
+                    <li>We generate clean, organized details about your car's specs and condition</li>
+                    <li>Highlights your car's best features in a way that builds buyer confidence</li>
+                    <li>A short story-style touch makes your listing stand out from generic posts</li>
+                </ul>
             </div>
         </div>
-        <footer>about us and stuff</footer>
+        <footer>
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Showroom</h3>
+                    <p>Helping car sellers get noticed, priced right, and sold faster.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <nav class="footer-links">
+                        <a href="index.html">Main Page</a>
+                        <a href="tutorial.html">Tutorial</a>
+                        <a href="tools.html">Tools</a>
+                    </nav>
+                </div>
+
+                 <div class="footer-col">
+                    <h4>Legal</h4>
+                     <nav class="footer-links">
+                        <a href="privacy.html">Privacy Policy</a>
+                        <a href="terms.html">Terms of Service</a>
+                    </nav>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p>support@showroom.com</p>
+                </div>
+            </div>
+
+    <p class="copyright">© 2026 Showroom. All rights reserved.</p>
+        </footer>
     </body>
 </html>
