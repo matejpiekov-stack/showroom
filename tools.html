@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>showroom</title>
+        <style>
+            h1 {
+                text-align: left;
+                font-size: 64px;
+            }
+            header {
+                border-bottom: 1px solid #000000;
+                display: grid;
+                align-items: center;
+                grid-template-columns: 1fr auto 1fr;
+                padding: 10px 40px;
+            }
+            .nav-links {
+                display: flex;
+                gap: 30px;
+                grid-column: 2;
+            }
+            .nav-links a {
+                text-decoration: none;
+                color: #030303;
+                font-size: 20px;
+                font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            }
+            .nav-links a:hover {
+                color: #cf7c37;
+            }
+            .Name{
+                margin-left: 50px;
+                color: #030303fb;
+                font-size: 54px;
+                grid-column: 1;
+            }
+            footer{
+                border-top: 1px solid #000000;
+                padding: 40px 60px 20px;
+                font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            }
+            .footer-content {
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+            .footer-col {
+                flex: 1;
+                min-width: 180px;
+            }
+            .footer-col h3 {
+                font-size: 22px;
+                margin-bottom: 10px;
+            }
+            .footer-col h4 {
+                font-size: 16px;
+                margin-bottom: 10px;
+                color: #444;
+            }
+            .footer-links {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+            .footer-links a {
+                text-decoration: none;
+                color: #030303;
+                font-size: 15px;
+            }
+            .footer-links a:hover {
+                color: #cf7c37;
+            }
+            .copyright {
+                text-align: center;
+                margin-top: 30px;
+                font-size: 13px;
+                color: #666;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1 class="Name">Showroom</h1>
+            <nav class="nav-links">
+                <a href="index.html">Main Page</a>
+                <a href="tutorial.html">Tutorial</a>
+                <a href="tools.html">Tools</a>
+            </nav>
+        </header>
+        <footer>
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Showroom</h3>
+                    <p>Helping car sellers get noticed, priced right, and sold faster.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <nav class="footer-links">
+                        <a href="index.html">Main Page</a>
+                        <a href="tutorial.html">Tutorial</a>
+                        <a href="tools.html">Tools</a>
+                    </nav>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <nav class="footer-links">
+                        <a href="privacy.html">Privacy Policy</a>
+                        <a href="terms.html">Terms of Service</a>
+                    </nav>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p>support@showroom.com</p>
+                </div>
+            </div>
+            <p class="copyright">© 2026 Showroom. All rights reserved.</p>
+        </footer>
+    </body>
+</html>
