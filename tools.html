@@ -77,6 +77,30 @@
                 font-size: 13px;
                 color: #666;
             }
+            #price-form {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                max-width: 400px;
+                margin: 40px auto;
+                font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+                font-size: 18px;
+            }
+            #price-form input, #price-form select {
+                padding: 8px;
+                font-size: 16px;
+            }
+            #price-form button {
+                padding: 10px;
+                font-size: 18px;
+                cursor: pointer;
+            }
+            #result {
+                text-align: center;
+                font-size: 22px;
+                font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+                margin-bottom: 30px;
+            }
         </style>
     </head>
     <body>
@@ -88,22 +112,25 @@
                 <a href="tools.html">Tools</a>
             </nav>
         </header>
+
         <form id="price-form">
-            <label>Original/new price (€): <input type="number" id="originalPrice" required></label>
+            <label>Make: <input type="text" id="make" required></label>
+            <label>Model: <input type="text" id="model" required></label>
             <label>Year: <input type="number" id="year" required></label>
             <label>Mileage (km): <input type="number" id="mileage" required></label>
             <label>Condition:
                 <select id="condition" required>
-                    <option value="1.1">Excellent</option>
-                    <option value="1.0">Good</option>
-                    <option value="0.85">Fair</option>
-                    <option value="0.65">Poor</option>
+                    <option value="Excellent">Excellent</option>
+                    <option value="Good">Good</option>
+                    <option value="Fair">Fair</option>
+                    <option value="Poor">Poor</option>
                 </select>
             </label>
             <button type="submit">Get Estimate</button>
         </form>
 
-<div id="result"></div>
+        <div id="result"></div>
+
         <footer>
             <div class="footer-content">
                 <div class="footer-col">
@@ -132,40 +159,32 @@
             </div>
             <p class="copyright">© 2026 Showroom. All rights reserved.</p>
         </footer>
+
         <script>
-            document.getElementById('price-form').addEventListener('submit', function(e) {
+            document.getElementById('price-form').addEventListener('submit', async function(e) {
                 e.preventDefault();
 
-                const originalPrice = parseFloat(document.getElementById('originalPrice').value);
-                const year = parseInt(document.getElementById('year').value);
-                const mileage = parseInt(document.getElementById('mileage').value);
-                const conditionMultiplier = parseFloat(document.getElementById('condition').value);
+                const make = document.getElementById('make').value;
+                const model = document.getElementById('model').value;
+                const year = document.getElementById('year').value;
+                const mileage = document.getElementById('mileage').value;
+                const condition = document.getElementById('condition').value;
 
-                const currentYear = new Date().getFullYear();
-                const age = Math.max(currentYear - year, 0);
+                document.getElementById('result').innerText = "Calculating...";
 
-                // Realistic depreciation curve:
-                // Cars lose ~20-25% in year 1, then level off toward a floor
-                // (based on typical real-world depreciation patterns)
-                const floorFraction = 0.10; // cars rarely go below 10% of original value while still running
-                const decayRate = 0.83;     // roughly matches ~50% value loss by year 5
+                try {
+                    const response = await fetch('http://localhost:3000/estimate-price', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ make, model, year, mileage, condition })
+                    });
 
-                let ageFraction = floorFraction + (1 - floorFraction) * Math.pow(decayRate, age);
-                let priceAfterAge = originalPrice * ageFraction;
-
-                // Mileage adjustment relative to "expected" mileage for the car's age
-                const expectedMileage = age * 15000; // 15,000km/year is a common EU average
-                const mileageDiff = mileage - expectedMileage;
-
-                // Each 20,000km above/below expected shifts value by ~4%
-                let mileageFactor = 1 - (mileageDiff / 20000) * 0.04;
-                mileageFactor = Math.max(0.5, Math.min(mileageFactor, 1.2)); // clamp extremes
-
-                let finalPrice = priceAfterAge * mileageFactor * conditionMultiplier;
-                finalPrice = Math.max(finalPrice, originalPrice * 0.05); // absolute floor: 5% of original
-
-                document.getElementById('result').innerText =
-                    `Estimated price: €${finalPrice.toFixed(0)}`;
+                    const data = await response.json();
+                    document.getElementById('result').innerText = `Estimated price: ${data.estimate}`;
+                } catch (err) {
+                    document.getElementById('result').innerText = "Error getting estimate. Is the server running?";
+                    console.error(err);
+                }
             });
         </script>
     </body>
