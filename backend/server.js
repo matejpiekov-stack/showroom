@@ -24,5 +24,20 @@ app.post('/estimate-price', async (req, res) => {
         res.status(500).json({ error: "Failed to get estimate" });
     }
 });
+app.post('/generate-description', async (req, res) => {
+    const { make, model, year, mileage, transmission, condition, extras } = req.body;
+
+    try {
+        const response = await ai.models.generateContent({
+            model: "gemini-3.5-flash",
+            contents: `Write a professional, appealing used car listing description for a ${year} ${make} ${model}, ${transmission} transmission, ${mileage}km, ${condition} condition. Extra details: ${extras || "none"}. Keep it concise (3-5 sentences), highlight strengths, and make it sound trustworthy to a buyer. Do not invent any facts not given.`
+        });
+
+        res.json({ description: response.text });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Failed to generate description" });
+    }
+});
 
 app.listen(3000, () => console.log('Server running on port 3000'));
