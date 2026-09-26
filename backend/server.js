@@ -45,7 +45,7 @@ app.post('/enhance-photo', async (req, res) => {
 
     try {
         const response = await ai.models.generateContent({
-            model: "gemini-3-flash-image",
+            model: "gemini-2.5-flash-image",
             contents: [
                 {
                     role: "user",
@@ -54,10 +54,12 @@ app.post('/enhance-photo', async (req, res) => {
                         { text: prompt }
                     ]
                 }
-            ]
+            ],
+            config: {
+                responseModalities: ["TEXT", "IMAGE"]
+            }
         });
 
-        // Find the image part in the response
         const imagePart = response.candidates[0].content.parts.find(p => p.inlineData);
         res.json({ image: imagePart.inlineData.data, mimeType: imagePart.inlineData.mimeType });
     } catch (err) {
