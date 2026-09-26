@@ -10,12 +10,12 @@ app.use(express.json());
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 app.post('/estimate-price', async (req, res) => {
-    const { make, model, year, mileage, condition } = req.body;
+    const { make, model, year, mileage, transmission, condition } = req.body;
 
     try {
         const response = await ai.models.generateContent({
             model: "gemini-3.5-flash",
-            contents: `Estimate the current used market price in EUR for a ${year} ${make} ${model} with ${mileage}km and ${condition} condition. Respond with only a price range like "€X,XXX - €X,XXX" and nothing else.`
+            contents: `Estimate the current used market price in EUR for a ${year} ${make} ${model}, ${transmission} transmission, ${mileage}km, ${condition} condition. Respond with only a price range like "€X,XXX - €X,XXX" and nothing else.`
         });
 
         res.json({ estimate: response.text });
@@ -24,6 +24,7 @@ app.post('/estimate-price', async (req, res) => {
         res.status(500).json({ error: "Failed to get estimate" });
     }
 });
+
 app.post('/generate-description', async (req, res) => {
     const { make, model, year, mileage, transmission, condition, extras } = req.body;
 
