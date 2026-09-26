@@ -5,7 +5,7 @@ const { GoogleGenAI } = require('@google/genai');
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '10mb' }));
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
@@ -38,6 +38,31 @@ app.post('/generate-description', async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Failed to generate description" });
+    }
+});
+app.post('/enhance-photo', async (req, res) => {
+    const { imageBase64, mimeType, prompt } = req.body;
+
+    try {
+        const response = await ai.models.generateContent({
+            model: "gemini-3-flash-image",
+            contents: [
+                {
+                    role: "user",
+                    parts: [
+                        { inlineData: { mimeType: mimeType, data: imageBase64 } },
+                        { text: prompt }
+                    ]
+                }
+            ]
+        });
+
+        // Find the image part in the response
+        const imagePart = response.candidates[0].content.parts.find(p => p.inlineData);
+        res.json({ image: imagePart.inlineData.data, mimeType: imagePart.inlineData.mimeType });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Failed to enhance photo" });
     }
 });
 
