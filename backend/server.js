@@ -31,7 +31,7 @@ app.post('/generate-description', async (req, res) => {
     try {
         const response = await ai.models.generateContent({
             model: "gemini-3.5-flash",
-            contents: `Write a professional, appealing used car listing description for a ${year} ${make} ${model}, ${transmission} transmission, ${mileage}km, ${condition} condition. Extra details: ${extras || "none"}. Keep it concise (3-5 sentences), highlight strengths, and make it sound trustworthy to a buyer. Do not invent any facts not given.`
+            contents: `Write a professional, appealing used car listing description for a ${year} ${make} ${model}, ${transmission} transmission, ${mileage}km, ${condition} condition. Extra details: ${extras || "none"}. Keep it concise (3-5 sentences), highlight strengths, and make it sound trustworthy to a buyer. Do not invent any facts not given and also put important facts in points and then write some appealing story about the car also remember. `
         });
 
         res.json({ description: response.text });
