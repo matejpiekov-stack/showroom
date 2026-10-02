@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Showroom — Terms of Service</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <style>
+            * { box-sizing: border-box; }
+            body {
+                background-color: #e6c49ee5;
+                font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+                margin: 0;
+                color: #030303;
+            }
+            header {
+                border-bottom: 1px solid #000000;
+                display: grid;
+                align-items: center;
+                grid-template-columns: 1fr auto 1fr;
+                padding: 10px 40px;
+                background-color: #e6c49ee5;
+            }
+            .nav-links { display: flex; gap: 30px; grid-column: 2; }
+            .nav-links a { text-decoration: none; color: #030303; font-size: 20px; }
+            .nav-links a:hover { color: #cf7c37; }
+            .Name { margin-left: 50px; color: #030303fb; font-size: 54px; grid-column: 1; }
+
+            .legal-container {
+                max-width: 800px;
+                margin: 50px auto 70px;
+                padding: 40px 50px;
+                background-color: #fffdfa;
+                border-radius: 10px;
+                border: 1px solid rgba(3,3,3,0.1);
+            }
+            .legal-container h1 {
+                font-size: 32px;
+                margin: 0 0 6px;
+            }
+            .legal-container .updated {
+                font-size: 13px;
+                color: #a8967c;
+                margin-bottom: 30px;
+            }
+            .legal-container h2 {
+                font-size: 19px;
+                margin: 28px 0 10px;
+                color: #030303;
+            }
+            .legal-container p, .legal-container li {
+                font-size: 15px;
+                line-height: 1.7;
+                color: #3a2f22;
+            }
+            .legal-container ul {
+                padding-left: 20px;
+                margin: 10px 0;
+            }
+
+            footer { border-top: 1px solid #000000; padding: 40px 60px 20px; }
+            .footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
+            .footer-col { flex: 1; min-width: 180px; }
+            .footer-col h3 { font-size: 22px; margin-bottom: 10px; }
+            .footer-col h4 { font-size: 16px; margin-bottom: 10px; color: #444; }
+            .footer-links { display: flex; flex-direction: column; gap: 8px; }
+            .footer-links a { text-decoration: none; color: #030303; font-size: 15px; }
+            .footer-links a:hover { color: #cf7c37; }
+            .copyright { text-align: center; margin-top: 30px; font-size: 13px; color: #666; }
+
+            @media (max-width: 800px) {
+                .legal-container { padding: 30px 25px; margin: 30px 20px; }
+                .Name { font-size: 32px; margin-left: 20px; }
+                header { padding: 10px 20px; }
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1 class="Name">Showroom</h1>
+            <nav class="nav-links">
+                <a href="index.html">Main Page</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="tools.html">Tools</a>
+            </nav>
+        </header>
+
+        <div class="legal-container">
+            <h1>Terms of Service</h1>
+            <p class="updated">Last updated: October 2026</p>
+
+            <p>By using Showroom, you agree to the following terms. If you do not agree, please do not use our website or tools.</p>
+
+            <h2>1. Our Service</h2>
+            <p>Showroom provides AI-assisted tools for car sellers, including price estimation, listing description generation, and photo enhancement. Results are generated automatically and are provided as estimates and suggestions only.</p>
+
+            <h2>2. No Guarantee of Accuracy</h2>
+            <p>Price estimates and descriptions are generated using third-party AI models and general market knowledge. We do not guarantee their accuracy, and you are responsible for verifying any price, description, or image before using it in a real listing.</p>
+
+            <h2>3. Honest Representation</h2>
+            <p>You agree not to use our photo enhancement tool to misrepresent a vehicle's actual condition (e.g. removing visible damage, defects, or wear). Enhancements are intended for background, lighting, and presentation purposes only.</p>
+
+            <h2>4. Subscriptions & Payment</h2>
+            <p>Paid plans are billed on a recurring monthly basis. You may cancel at any time; cancellation takes effect at the end of the current billing period.</p>
+
+            <h2>5. Account Responsibility</h2>
+            <p>You are responsible for maintaining the confidentiality of your account and for all activity under it.</p>
+
+            <h2>6. Limitation of Liability</h2>
+            <p>Showroom is provided "as is" without warranties of any kind. We are not liable for any damages or losses arising from the use of our tools, including inaccurate price estimates or descriptions.</p>
+
+            <h2>7. Changes to These Terms</h2>
+            <p>We may update these terms from time to time. Continued use of the site after changes constitutes acceptance of the updated terms.</p>
+
+            <h2>8. Contact</h2>
+            <p>Questions about these terms can be sent to support@showroom.com.</p>
+        </div>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h3>Showroom</h3>
+                    <p>Helping car sellers get noticed, priced right, and sold faster.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <nav class="footer-links">
+                        <a href="index.html">Main Page</a>
+                        <a href="pricing.html">Pricing</a>
+                        <a href="tools.html">Tools</a>
+                    </nav>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <nav class="footer-links">
+                        <a href="privacy.html">Privacy Policy</a>
+                        <a href="terms.html">Terms of Service</a>
+                    </nav>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <p>support@showroom.com</p>
+                </div>
+            </div>
+            <p class="copyright">© 2026 Showroom. All rights reserved.</p>
+        </footer>
+    </body>
+</html>
