@@ -1,18 +1,27 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>showroom</title>
+        <title>Showroom — Tools</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
         <style>
-            h1 {
-                text-align: left;
-                font-size: 64px;
+            * {
+                box-sizing: border-box;
             }
+            body {
+                background-color: #e6c49ee5;
+                font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+                margin: 0;
+                color: #030303;
+            }
+
+            /* ---------- Header (matches home page) ---------- */
             header {
                 border-bottom: 1px solid #000000;
                 display: grid;
                 align-items: center;
                 grid-template-columns: 1fr auto 1fr;
                 padding: 10px 40px;
+                background-color: #e6c49ee5;
             }
             .nav-links {
                 display: flex;
@@ -23,21 +32,296 @@
                 text-decoration: none;
                 color: #030303;
                 font-size: 20px;
-                font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
             }
             .nav-links a:hover {
                 color: #cf7c37;
             }
-            .Name{
+            .Name {
                 margin-left: 50px;
                 color: #030303fb;
                 font-size: 54px;
                 grid-column: 1;
             }
-            footer{
+
+            /* ---------- Page intro ---------- */
+            .page-intro {
+                max-width: 1100px;
+                margin: 50px auto 10px;
+                padding: 0 40px;
+            }
+            .page-intro h1 {
+                font-size: 40px;
+                font-weight: 700;
+                margin: 0 0 10px;
+            }
+            .page-intro p {
+                font-size: 17px;
+                color: #6b5842;
+                max-width: 620px;
+                line-height: 1.6;
+                margin: 0;
+            }
+
+            /* ---------- Main tool: two-panel layout ---------- */
+            .tool-grid {
+                max-width: 1100px;
+                margin: 40px auto 60px;
+                padding: 0 40px;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+                align-items: start;
+            }
+
+            .panel {
+                border-radius: 10px;
+                padding: 32px;
+            }
+
+            .form-panel {
+                background-color: #f4e9d8;
+                border: 1px solid rgba(3,3,3,0.1);
+            }
+
+            .form-panel h2 {
+                font-size: 22px;
+                font-weight: 600;
+                margin: 0 0 24px;
+            }
+
+            #car-form {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .form-row {
+                display: flex;
+                gap: 14px;
+            }
+
+            .form-row label,
+            #car-form > label {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                font-size: 14px;
+                font-weight: 500;
+                color: #3a2f22;
+            }
+
+            #car-form input,
+            #car-form select,
+            #car-form textarea {
+                padding: 10px 12px;
+                font-size: 15px;
+                border: 1px solid #c9b494;
+                border-radius: 6px;
+                font-family: inherit;
+                background-color: #fffdfa;
+            }
+
+            #car-form input:focus,
+            #car-form select:focus,
+            #car-form textarea:focus {
+                outline: 2px solid #cf7c37;
+                outline-offset: 1px;
+            }
+
+            #car-form textarea {
+                resize: vertical;
+                min-height: 70px;
+            }
+
+            #car-form button {
+                margin-top: 6px;
+                padding: 14px;
+                font-size: 16px;
+                font-weight: 600;
+                background-color: rgb(207, 124, 55);
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: background-color 0.15s ease;
+            }
+
+            #car-form button:hover {
+                background-color: rgb(180, 105, 45);
+            }
+
+            /* Results panel — the one bold element on the page */
+            .results-panel {
+                background-color: #fffdfa;
+                border-left: 4px solid rgb(207, 124, 55);
+                box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+                position: sticky;
+                top: 30px;
+                min-height: 300px;
+            }
+
+            .results-panel h2 {
+                font-size: 22px;
+                font-weight: 600;
+                margin: 0 0 20px;
+            }
+
+            .results-empty {
+                color: #a8967c;
+                font-size: 15px;
+                line-height: 1.6;
+            }
+
+            .result-block {
+                margin-bottom: 26px;
+            }
+
+            .result-block:last-child {
+                margin-bottom: 0;
+            }
+
+            .result-block h3 {
+                font-size: 13px;
+                font-weight: 600;
+                color: #6b5842;
+                margin: 0 0 8px;
+            }
+
+            .price-value {
+                font-size: 30px;
+                font-weight: 700;
+                color: #030303;
+            }
+
+            .result-block p {
+                margin: 0;
+                line-height: 1.65;
+                font-size: 15.5px;
+                color: #222;
+            }
+
+            /* ---------- Photo enhancement section ---------- */
+            .photo-section {
+                max-width: 1100px;
+                margin: 0 auto 70px;
+                padding: 0 40px;
+            }
+
+            .photo-card {
+                background-color: #f4e9d8;
+                border: 1px solid rgba(3,3,3,0.1);
+                border-radius: 10px;
+                padding: 32px;
+            }
+
+            .photo-card h2 {
+                font-size: 22px;
+                font-weight: 600;
+                margin: 0 0 6px;
+            }
+
+            .photo-card > p {
+                color: #6b5842;
+                font-size: 15px;
+                margin: 0 0 24px;
+            }
+
+            .photo-tool-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+                align-items: start;
+            }
+
+            .dropzone {
+                border: 2px dashed #c9b494;
+                border-radius: 8px;
+                padding: 30px;
+                text-align: center;
+                background-color: #fffdfa;
+                cursor: pointer;
+                transition: border-color 0.15s ease;
+            }
+
+            .dropzone:hover {
+                border-color: rgb(207, 124, 55);
+            }
+
+            .dropzone input[type="file"] {
+                margin-top: 12px;
+            }
+
+            .dropzone-label {
+                font-size: 15px;
+                font-weight: 500;
+                color: #3a2f22;
+            }
+
+            #photo-form label.style-label {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+                font-size: 14px;
+                font-weight: 500;
+                color: #3a2f22;
+                margin-top: 18px;
+            }
+
+            #photo-form select {
+                padding: 10px 12px;
+                font-size: 15px;
+                border: 1px solid #c9b494;
+                border-radius: 6px;
+                font-family: inherit;
+                background-color: #fffdfa;
+            }
+
+            #photo-form button {
+                margin-top: 18px;
+                width: 100%;
+                padding: 14px;
+                font-size: 16px;
+                font-weight: 600;
+                background-color: rgb(207, 124, 55);
+                color: white;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: background-color 0.15s ease;
+            }
+
+            #photo-form button:hover {
+                background-color: rgb(180, 105, 45);
+            }
+
+            .photo-preview-panel {
+                background-color: #fffdfa;
+                border-left: 4px solid rgb(207, 124, 55);
+                box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+                border-radius: 6px;
+                padding: 24px;
+                min-height: 260px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .photo-preview-panel img {
+                max-width: 100%;
+                border-radius: 6px;
+            }
+
+            .preview-empty {
+                color: #a8967c;
+                font-size: 15px;
+            }
+
+            /* ---------- Footer (matches home page) ---------- */
+            footer {
                 border-top: 1px solid #000000;
                 padding: 40px 60px 20px;
-                font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
             }
             .footer-content {
                 display: flex;
@@ -77,29 +361,22 @@
                 font-size: 13px;
                 color: #666;
             }
-            #price-form {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-                max-width: 400px;
-                margin: 40px auto;
-                font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-                font-size: 18px;
-            }
-            #price-form input, #price-form select {
-                padding: 8px;
-                font-size: 16px;
-            }
-            #price-form button {
-                padding: 10px;
-                font-size: 18px;
-                cursor: pointer;
-            }
-            #result {
-                text-align: center;
-                font-size: 22px;
-                font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-                margin-bottom: 30px;
+
+            /* ---------- Responsive ---------- */
+            @media (max-width: 800px) {
+                .tool-grid, .photo-tool-grid {
+                    grid-template-columns: 1fr;
+                }
+                .results-panel {
+                    position: static;
+                }
+                .Name {
+                    font-size: 32px;
+                    margin-left: 20px;
+                }
+                header {
+                    padding: 10px 20px;
+                }
             }
         </style>
     </head>
@@ -108,28 +385,105 @@
             <h1 class="Name">Showroom</h1>
             <nav class="nav-links">
                 <a href="index.html">Main Page</a>
-                <a href="tutorial.html">Tutorial</a>
+                <a href="Pricing.html">Pricing</a>
                 <a href="tools.html">Tools</a>
             </nav>
         </header>
 
-        <form id="price-form">
-            <label>Make: <input type="text" id="make" required></label>
-            <label>Model: <input type="text" id="model" required></label>
-            <label>Year: <input type="number" id="year" required></label>
-            <label>Mileage (km): <input type="number" id="mileage" required></label>
-            <label>Condition:
-                <select id="condition" required>
-                    <option value="Excellent">Excellent</option>
-                    <option value="Good">Good</option>
-                    <option value="Fair">Fair</option>
-                    <option value="Poor">Poor</option>
-                </select>
-            </label>
-            <button type="submit">Get Estimate</button>
-        </form>
+        <div class="page-intro">
+            <h1>Tools</h1>
+            <p>Enter your car's details once to get a market price estimate, a ready-to-use listing description, and enhanced photos — all in one place.</p>
+        </div>
 
-        <div id="result"></div>
+        <div class="tool-grid">
+            <div class="panel form-panel">
+                <h2>Price & Description</h2>
+                <form id="car-form">
+                    <div class="form-row">
+                        <label>Make
+                            <input type="text" id="make" required>
+                        </label>
+                        <label>Model
+                            <input type="text" id="model" required>
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <label>Year
+                            <input type="number" id="year" required>
+                        </label>
+                        <label>Mileage (km)
+                            <input type="number" id="mileage" required>
+                        </label>
+                    </div>
+
+                    <div class="form-row">
+                        <label>Transmission
+                            <select id="transmission">
+                                <option value="Manual">Manual</option>
+                                <option value="Automatic">Automatic</option>
+                            </select>
+                        </label>
+                        <label>Condition
+                            <select id="condition">
+                                <option value="Excellent">Excellent</option>
+                                <option value="Good">Good</option>
+                                <option value="Fair">Fair</option>
+                                <option value="Poor">Poor</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <label>Extra details (optional)
+                        <textarea id="extras" placeholder="e.g. new tires, no accidents, full service history"></textarea>
+                    </label>
+
+                    <button type="submit">Get Price & Description</button>
+                </form>
+            </div>
+
+            <div class="panel results-panel">
+                <h2>Results</h2>
+                <div id="resultsEmpty" class="results-empty">Fill out the form to get your price estimate and a ready-to-use description.</div>
+                <div id="resultsContent" style="display:none;">
+                    <div class="result-block">
+                        <h3>Estimated Price</h3>
+                        <p class="price-value" id="priceResult">—</p>
+                    </div>
+                    <div class="result-block">
+                        <h3>Suggested Description</h3>
+                        <p id="descriptionResult">—</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="photo-section">
+            <div class="photo-card">
+                <h2>Photo Enhancement</h2>
+                <p>Upload a photo and choose a style — we'll improve the setting and lighting without touching the car itself.</p>
+                <div class="photo-tool-grid">
+                    <form id="photo-form">
+                        <div class="dropzone" onclick="document.getElementById('photoInput').click()">
+                            <div class="dropzone-label">Click to upload a car photo</div>
+                            <input type="file" id="photoInput" accept="image/*" required>
+                        </div>
+                        <label class="style-label">Enhancement style
+                            <select id="photoStyle">
+                                <option value="Replace the background with a clean, professional studio backdrop. Improve lighting to look bright and even. Do not change the car itself in any way.">Studio backdrop</option>
+                                <option value="Replace the background with a scenic beach at sunset. Match the lighting and color temperature on the car to the new environment. Do not change the car itself in any way.">Beach sunset</option>
+                                <option value="Improve the lighting, sharpness, and color balance of this photo without changing the background or the car itself.">Enhance lighting only</option>
+                            </select>
+                        </label>
+                        <button type="submit">Enhance Photo</button>
+                    </form>
+
+                    <div class="photo-preview-panel" id="photoPreview">
+                        <span class="preview-empty">Your enhanced photo will appear here</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <footer>
             <div class="footer-content">
@@ -141,7 +495,7 @@
                     <h4>Quick Links</h4>
                     <nav class="footer-links">
                         <a href="index.html">Main Page</a>
-                        <a href="tutorial.html">Tutorial</a>
+                        <a href="pricing.html">Pricing</a>
                         <a href="tools.html">Tools</a>
                     </nav>
                 </div>
@@ -161,30 +515,97 @@
         </footer>
 
         <script>
-            document.getElementById('price-form').addEventListener('submit', async function(e) {
+            document.getElementById('car-form').addEventListener('submit', async function(e) {
                 e.preventDefault();
 
                 const make = document.getElementById('make').value;
                 const model = document.getElementById('model').value;
                 const year = document.getElementById('year').value;
                 const mileage = document.getElementById('mileage').value;
+                const transmission = document.getElementById('transmission').value;
                 const condition = document.getElementById('condition').value;
+                const extras = document.getElementById('extras').value;
 
-                document.getElementById('result').innerText = "Calculating...";
+                const resultsEmpty = document.getElementById('resultsEmpty');
+                const resultsContent = document.getElementById('resultsContent');
+                const priceEl = document.getElementById('priceResult');
+                const descEl = document.getElementById('descriptionResult');
+
+                resultsEmpty.style.display = 'none';
+                resultsContent.style.display = 'block';
+                priceEl.innerText = "Calculating...";
+                descEl.innerText = "Generating...";
+
+                const payload = { make, model, year, mileage, transmission, condition, extras };
 
                 try {
-                    const response = await fetch('http://localhost:3000/estimate-price', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ make, model, year, mileage, condition })
-                    });
+                    const [priceRes, descRes] = await Promise.all([
+                        fetch('http://localhost:3000/estimate-price', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        }),
+                        fetch('http://localhost:3000/generate-description', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        })
+                    ]);
 
-                    const data = await response.json();
-                    document.getElementById('result').innerText = `Estimated price: ${data.estimate}`;
+                    const priceData = await priceRes.json();
+                    const descData = await descRes.json();
+
+                    priceEl.innerText = priceData.estimate;
+                    descEl.innerText = descData.description;
                 } catch (err) {
-                    document.getElementById('result').innerText = "Error getting estimate. Is the server running?";
+                    priceEl.innerText = "Error";
+                    descEl.innerText = "Error generating description. Is the server running?";
                     console.error(err);
                 }
+            });
+
+            document.getElementById('photoInput').addEventListener('change', function() {
+                const label = document.querySelector('.dropzone-label');
+                if (this.files[0]) {
+                    label.textContent = this.files[0].name;
+                }
+            });
+
+            document.getElementById('photo-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+
+                const fileInput = document.getElementById('photoInput');
+                const file = fileInput.files[0];
+                const prompt = document.getElementById('photoStyle').value;
+                const previewDiv = document.getElementById('photoPreview');
+
+                if (!file) return;
+
+                previewDiv.innerHTML = '<span class="preview-empty">Enhancing...</span>';
+
+                const reader = new FileReader();
+                reader.onload = async function() {
+                    const base64Data = reader.result.split(',')[1];
+
+                    try {
+                        const response = await fetch('http://localhost:3000/enhance-photo', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                imageBase64: base64Data,
+                                mimeType: file.type,
+                                prompt: prompt
+                            })
+                        });
+
+                        const data = await response.json();
+                        previewDiv.innerHTML = `<img src="data:${data.mimeType};base64,${data.image}">`;
+                    } catch (err) {
+                        previewDiv.innerHTML = '<span class="preview-empty">Error enhancing photo.</span>';
+                        console.error(err);
+                    }
+                };
+                reader.readAsDataURL(file);
             });
         </script>
     </body>
