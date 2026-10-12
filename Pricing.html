@@ -1,337 +1,281 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Showroom — Pricing</title>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-        <style>
-            * {
-                box-sizing: border-box;
-            }
-            body {
-                background-color: #e6c49ee5;
-                font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-                margin: 0;
-                color: #030303;
-            }
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Showroom — Pricing</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
 
-            header {
-                border-bottom: 1px solid #000000;
-                display: grid;
-                align-items: center;
-                grid-template-columns: 1fr auto 1fr;
-                padding: 10px 40px;
-                background-color: #e6c49ee5;
-            }
-            .nav-links {
-                display: flex;
-                gap: 30px;
-                grid-column: 2;
-            }
-            .nav-links a {
-                text-decoration: none;
-                color: #030303;
-                font-size: 20px;
-            }
-            .nav-links a:hover {
-                color: #cf7c37;
-            }
-            .Name {
-                margin-left: 50px;
-                color: #030303fb;
-                font-size: 54px;
-                grid-column: 1;
-            }
+body {
+    background-color: #e6c49ee5;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    margin: 0;
+    color: #030303;
+}
 
-            .page-intro {
-                max-width: 1100px;
-                margin: 50px auto 10px;
-                padding: 0 40px;
-                text-align: center;
-            }
-            .page-intro h1 {
-                font-size: 40px;
-                font-weight: 700;
-                margin: 0 0 10px;
-            }
-            .page-intro p {
-                font-size: 17px;
-                color: #6b5842;
-                line-height: 1.6;
-                margin: 0 auto;
-                max-width: 500px;
-            }
+header {
+    border-bottom: 1px solid #000000;
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr auto 1fr;
+    padding: 10px 40px;
+    background-color: #e6c49ee5;
+}
+.nav-links { display: flex; gap: 30px; grid-column: 2; }
+.nav-links a { text-decoration: none; color: #030303; font-size: 20px; }
+.nav-links a:hover { color: #cf7c37; }
+.Name { margin-left: 50px; color: #030303fb; font-size: 54px; grid-column: 1; }
 
-            .pricing-grid {
-                max-width: 1100px;
-                margin: 50px auto 70px;
-                padding: 0 40px;
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 30px;
-                align-items: start;
-            }
+.page-intro { max-width: 1100px; margin: 50px auto 10px; padding: 0 40px; }
+.page-intro h1 { font-size: 40px; font-weight: 700; margin: 0 0 10px; }
+.page-intro p { font-size: 17px; color: #6b5842; max-width: 620px; line-height: 1.6; margin: 0; }
 
-            .plan {
-                background-color: #f4e9d8;
-                border: 1px solid rgba(3,3,3,0.1);
-                border-radius: 10px;
-                padding: 36px 30px;
-            }
+.notice {
+    max-width: 1020px;
+    margin: 24px auto 0;
+    padding: 12px 18px;
+    background: #f4e9d8;
+    border: 1px dashed #c9b494;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #3a2f22;
+}
+.notice a { color: #cf7c37; cursor: pointer; font-weight: 600; }
+.notice-wrap { padding: 0 40px; }
+.error-text { color: #b3402a; font-size: 14px; max-width: 1020px; margin: 12px auto 0; padding: 0 40px; min-height: 18px; }
 
-            .plan.featured {
-                background-color: #fffdfa;
-                border-left: 4px solid rgb(207, 124, 55);
-                box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-                position: relative;
-            }
+.plan-grid {
+    max-width: 1100px;
+    margin: 20px auto 60px;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: stretch;
+}
 
-            .featured-tag {
-                position: absolute;
-                top: -14px;
-                left: 30px;
-                background-color: rgb(207, 124, 55);
-                color: white;
-                font-size: 12px;
-                font-weight: 600;
-                padding: 5px 12px;
-                border-radius: 20px;
-                letter-spacing: 0.3px;
-            }
+.plan-card {
+    position: relative;
+    background-color: #f4e9d8;
+    border: 1px solid rgba(3,3,3,0.1);
+    border-radius: 10px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+}
+.plan-card.current {
+    background-color: #fffdfa;
+    border-left: 4px solid rgb(207, 124, 55);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+.current-tag {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgb(207, 124, 55);
+}
+.plan-card h2 { font-size: 22px; font-weight: 600; margin: 0 0 6px; }
+.plan-price { font-size: 36px; font-weight: 700; margin: 6px 0; }
+.plan-price span { font-size: 15px; font-weight: 500; color: #6b5842; }
+.plan-tagline { color: #6b5842; font-size: 15px; margin: 0 0 18px; }
+.plan-card ul { list-style: none; padding: 0; margin: 0 0 24px; line-height: 2; font-size: 15px; flex: 1; }
 
-            .plan h2 {
-                font-size: 22px;
-                font-weight: 600;
-                margin: 0 0 6px;
-            }
+/* Usage meters (shown on the current plan) */
+.meter-title { font-size: 13px; font-weight: 600; color: #6b5842; margin: 0 0 12px; }
+.plan-card ul.meters { line-height: 1.4; }
+.meter-row { margin-bottom: 14px; }
+.meter-top { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 6px; }
+.meter-top .full { color: #b3402a; font-weight: 600; }
+.meter { height: 8px; background: #eadfcb; border-radius: 999px; overflow: hidden; }
+.meter-fill { height: 100%; background: rgb(207, 124, 55); border-radius: 999px; transition: width 0.3s ease; }
+.meter-fill.full { background: #b3402a; }
 
-            .plan .plan-desc {
-                font-size: 14px;
-                color: #6b5842;
-                margin: 0 0 24px;
-                min-height: 36px;
-            }
+.plan-btn {
+    padding: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: inherit;
+    background-color: rgb(207, 124, 55);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+.plan-btn:hover { background-color: rgb(180, 105, 45); }
+.plan-btn:disabled { opacity: 0.6; cursor: not-allowed; background-color: #a8967c; }
 
-            .plan .price {
-                font-size: 38px;
-                font-weight: 700;
-                margin-bottom: 2px;
-            }
+.results-empty { color: #a8967c; font-size: 15px; }
 
-            .plan .price span {
-                font-size: 16px;
-                font-weight: 500;
-                color: #6b5842;
-            }
+footer { border-top: 1px solid #000000; padding: 40px 60px 20px; }
+.footer-content { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; }
+.footer-col { flex: 1; min-width: 180px; }
+.footer-col h3 { font-size: 22px; margin-bottom: 10px; }
+.footer-col h4 { font-size: 16px; margin-bottom: 10px; color: #444; }
+.footer-links { display: flex; flex-direction: column; gap: 8px; }
+.footer-links a { text-decoration: none; color: #030303; font-size: 15px; }
+.footer-links a:hover { color: #cf7c37; }
+.copyright { text-align: center; margin-top: 30px; font-size: 13px; color: #666; }
 
-            .plan .billed-note {
-                font-size: 13px;
-                color: #a8967c;
-                margin-bottom: 26px;
-            }
+@media (max-width: 800px) {
+    .plan-grid { grid-template-columns: 1fr; }
+    .Name { font-size: 32px; margin-left: 20px; }
+    header { padding: 10px 20px; }
+}
+</style>
+</head>
+<body>
 
-            .plan ul {
-                list-style: none;
-                padding: 0;
-                margin: 0 0 30px;
-                display: flex;
-                flex-direction: column;
-                gap: 12px;
-            }
+<header>
+    <h1 class="Name">Showroom</h1>
+    <nav class="nav-links">
+        <a href="index.html">Main Page</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="tools.html">Tools</a>
+    </nav>
+    <a id="planBadge" class="plan-badge" href="pricing.html">…</a>
+</header>
 
-            .plan ul li {
-                font-size: 14.5px;
-                color: #3a2f22;
-                padding-left: 22px;
-                position: relative;
-            }
+<div class="page-intro">
+    <h1>Pricing</h1>
+    <p>Pick the plan that fits how many cars you sell. Limits reset on the first of every month.</p>
+</div>
 
-            .plan ul li::before {
-                content: "✓";
-                position: absolute;
-                left: 0;
-                color: rgb(207, 124, 55);
-                font-weight: 700;
-            }
+<div class="notice-wrap">
+    <div class="notice" id="demoNote" style="display:none;">
+        Demo mode: payments aren't connected yet, so you can switch plans for free to try the limits.
+        <a id="resetUsage">Reset my usage</a>
+    </div>
+</div>
+<p class="error-text" id="planMsg"></p>
 
-            .plan button {
-                width: 100%;
-                padding: 13px;
-                font-size: 15px;
-                font-weight: 600;
-                border-radius: 6px;
-                cursor: pointer;
-                border: 1px solid rgb(207, 124, 55);
-                background-color: transparent;
-                color: rgb(180, 105, 45);
-                transition: background-color 0.15s ease, color 0.15s ease;
-            }
+<div class="plan-grid" id="planGrid">
+    <p class="results-empty">Loading plans...</p>
+</div>
 
-            .plan.featured button {
-                background-color: rgb(207, 124, 55);
-                color: white;
-                border: none;
-            }
-
-            .plan button:hover {
-                background-color: rgb(207, 124, 55);
-                color: white;
-            }
-
-            .pricing-note {
-                max-width: 700px;
-                margin: 0 auto 60px;
-                padding: 0 40px;
-                text-align: center;
-                font-size: 13.5px;
-                color: #6b5842;
-            }
-
-            footer {
-                border-top: 1px solid #000000;
-                padding: 40px 60px 20px;
-            }
-            .footer-content {
-                display: flex;
-                justify-content: space-between;
-                flex-wrap: wrap;
-                gap: 30px;
-            }
-            .footer-col {
-                flex: 1;
-                min-width: 180px;
-            }
-            .footer-col h3 {
-                font-size: 22px;
-                margin-bottom: 10px;
-            }
-            .footer-col h4 {
-                font-size: 16px;
-                margin-bottom: 10px;
-                color: #444;
-            }
-            .footer-links {
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-            }
-            .footer-links a {
-                text-decoration: none;
-                color: #030303;
-                font-size: 15px;
-            }
-            .footer-links a:hover {
-                color: #cf7c37;
-            }
-            .copyright {
-                text-align: center;
-                margin-top: 30px;
-                font-size: 13px;
-                color: #666;
-            }
-
-            @media (max-width: 850px) {
-                .pricing-grid {
-                    grid-template-columns: 1fr;
-                }
-                .Name {
-                    font-size: 32px;
-                    margin-left: 20px;
-                }
-                header {
-                    padding: 10px 20px;
-                }
-            }
-        </style>
-    </head>
-    <body>
-        <header>
-            <h1 class="Name">Showroom</h1>
-            <nav class="nav-links">
+<footer>
+    <div class="footer-content">
+        <div class="footer-col">
+            <h3>Showroom</h3>
+            <p>Helping car sellers get noticed, priced right, and sold faster.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <nav class="footer-links">
                 <a href="index.html">Main Page</a>
-                <a href="Pricing.html">Pricing</a>
+                <a href="pricing.html">Pricing</a>
                 <a href="tools.html">Tools</a>
             </nav>
-        </header>
-
-        <div class="page-intro">
-            <h1>Simple pricing</h1>
-            <p>Pick a plan that fits how often you're selling. Cancel anytime.</p>
         </div>
-
-        <div class="pricing-grid">
-            <div class="plan">
-                <h2>Starter</h2>
-                <p class="plan-desc">For occasional sellers</p>
-                <div class="price">€0<span>/month</span></div>
-                <div class="billed-note">Free forever</div>
-                <ul>
-                    <li>3 price estimates / month</li>
-                    <li>3 descriptions / month</li>
-                    <li>No photo enhancement</li>
-                    <li>Community support</li>
-                </ul>
-                <button>Get Started</button>
-            </div>
-
-            <div class="plan featured">
-                <span class="featured-tag">MOST POPULAR</span>
-                <h2>Pro</h2>
-                <p class="plan-desc">For regular sellers</p>
-                <div class="price">€9<span>/month</span></div>
-                <div class="billed-note">Billed monthly</div>
-                <ul>
-                    <li>Unlimited price estimates</li>
-                    <li>Unlimited descriptions</li>
-                    <li>20 photo enhancements / month</li>
-                    <li>Priority email support</li>
-                </ul>
-                <button>Choose Pro</button>
-            </div>
-
-            <div class="plan">
-                <h2>Dealer</h2>
-                <p class="plan-desc">For resellers & small lots</p>
-                <div class="price">€24<span>/month</span></div>
-                <div class="billed-note">Billed monthly</div>
-                <ul>
-                    <li>Unlimited price estimates</li>
-                    <li>Unlimited descriptions</li>
-                    <li>Unlimited photo enhancements</li>
-                    <li>Priority support</li>
-                </ul>
-                <button>Choose Dealer</button>
-            </div>
+        <div class="footer-col">
+            <h4>Legal</h4>
+            <nav class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </nav>
         </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>support@showroom.com</p>
+        </div>
+    </div>
+    <p class="copyright">© 2026 Showroom. All rights reserved.</p>
+</footer>
 
-        <p class="pricing-note">Prices shown are illustrative. Checkout isn't live yet — buttons don't process payment.</p>
+<script src="plan.js"></script>
+<script>
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const grid = document.getElementById('planGrid');
+const msg = document.getElementById('planMsg');
 
-        <footer>
-            <div class="footer-content">
-                <div class="footer-col">
-                    <h3>Showroom</h3>
-                    <p>Helping car sellers get noticed, priced right, and sold faster.</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <nav class="footer-links">
-                        <a href="index.html">Main Page</a>
-                        <a href="Pricing.html">Pricing</a>
-                        <a href="tools.html">Tools</a>
-                    </nav>
-                </div>
-                <div class="footer-col">
-                    <h4>Legal</h4>
-                    <nav class="footer-links">
-                        <a href="privacy.html">Privacy Policy</a>
-                        <a href="terms.html">Terms of Service</a>
-                    </nav>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact</h4>
-                    <p>support@showroom.com</p>
-                </div>
+// One usage row with a progress bar, e.g. "Price estimates 3 / 5"
+function meterRow(label, used, limit) {
+    const u = Number(used) || 0;
+    const l = Number(limit) || 0;
+    const full = l > 0 && u >= l;
+    const pct = l > 0 ? Math.min(100, Math.round((u / l) * 100)) : 0;
+    return `
+        <li class="meter-row">
+            <div class="meter-top">
+                <span>${esc(label)}</span>
+                <span class="${full ? 'full' : ''}"><strong>${u}</strong> / ${l}</span>
             </div>
-            <p class="copyright">© 2026 Showroom. All rights reserved.</p>
-        </footer>
-    </body>
+            <div class="meter"><div class="meter-fill${full ? ' full' : ''}" style="width:${pct}%"></div></div>
+        </li>`;
+}
+
+async function load() {
+    try {
+        const [plansRes, me] = await Promise.all([Showroom.api('GET', '/plans'), Showroom.refresh()]);
+        if (!plansRes.ok || !me) throw new Error('bad response');
+
+        document.getElementById('demoNote').style.display = plansRes.data.demo ? 'block' : 'none';
+
+        grid.innerHTML = plansRes.data.plans.map(p => {
+            const current = p.id === me.plan;
+
+            // Current plan shows usage meters, other plans show plain limits
+            const features = current
+                ? `<p class="meter-title">Used this month</p>
+                   <ul class="meters">
+                       ${meterRow('Price estimates', me.usage.estimate, p.limits.estimate)}
+                       ${meterRow('Listing descriptions', me.usage.description, p.limits.description)}
+                       ${meterRow('Photo enhancements', me.usage.photo, p.limits.photo)}
+                   </ul>`
+                : `<ul>
+                       <li><strong>${Number(p.limits.estimate)}</strong> price estimates / month</li>
+                       <li><strong>${Number(p.limits.description)}</strong> listing descriptions / month</li>
+                       <li><strong>${Number(p.limits.photo)}</strong> photo enhancements / month</li>
+                   </ul>`;
+
+            return `
+            <div class="plan-card${current ? ' current' : ''}">
+                ${current ? '<span class="current-tag">Your plan</span>' : ''}
+                <h2>${esc(p.name)}</h2>
+                <p class="plan-price">${esc(p.price)}<span>/month</span></p>
+                <p class="plan-tagline">${esc(p.tagline)}</p>
+                ${features}
+                <button class="plan-btn" data-plan="${esc(p.id)}" ${current ? 'disabled' : ''}>
+                    ${current ? 'Current plan' : 'Switch to ' + esc(p.name)}
+                </button>
+            </div>`;
+        }).join('');
+    } catch (err) {
+        grid.innerHTML = '<p class="results-empty">Could not reach the server. Is it running?</p>';
+    }
+}
+
+grid.addEventListener('click', async e => {
+    const btn = e.target.closest('.plan-btn');
+    if (!btn || btn.disabled) return;
+    msg.textContent = '';
+    btn.disabled = true;
+    btn.textContent = 'Switching...';
+    try {
+        const { ok, data } = await Showroom.api('POST', '/plan', { plan: btn.dataset.plan });
+        if (!ok) msg.textContent = data.error || 'Could not switch plan.';
+    } catch (_) {
+        msg.textContent = 'Could not reach the server. Is it running?';
+    }
+    load();
+});
+
+document.getElementById('resetUsage').addEventListener('click', async () => {
+    msg.textContent = '';
+    try {
+        const { ok, data } = await Showroom.api('POST', '/reset-usage');
+        if (!ok) msg.textContent = data.error || 'Could not reset usage.';
+    } catch (_) {
+        msg.textContent = 'Could not reach the server. Is it running?';
+    }
+    load();
+});
+
+load();
+</script>
+</body>
 </html>

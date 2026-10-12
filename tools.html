@@ -226,6 +226,36 @@ header {
     margin-top: 6px !important;
 }
 
+/* ---------- Action buttons (copy / download) ---------- */
+.action-btn {
+    margin-top: 14px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    background-color: transparent;
+    color: rgb(207, 124, 55);
+    border: 1px solid rgb(207, 124, 55);
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.action-btn:hover {
+    background-color: rgb(207, 124, 55);
+    color: white;
+}
+
+.photo-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+}
+
 /* ---------- Photo enhancement section ---------- */
 .photo-section {
     max-width: 1100px;
@@ -422,6 +452,7 @@ footer {
         <a href="Pricing.html">Pricing</a>
         <a href="tools.html">Tools</a>
     </nav>
+    <a id="planBadge" class="plan-badge" href="Pricing.html">…</a>
 </header>
 
 <div class="page-intro">
@@ -443,10 +474,10 @@ footer {
             </div>
             <div class="form-row">
                 <label>Year
-                    <input type="number" id="year" required min="1990" max="2100">
+                    <input type="number" id="year" required min="1950" max="2100">
                 </label>
                 <label>Mileage (km)
-                    <input type="number" id="mileage" required min="0" max="1000000">
+                    <input type="number" id="mileage" required min="0" max="3000000">
                 </label>
             </div>
             <div class="form-row">
@@ -465,10 +496,11 @@ footer {
                     </select>
                 </label>
             </div>
-                <label>Extra details (recommended)
-                    <textarea id="extras" maxlength="300" placeholder="Engine & fuel (e.g. 2.0 TDI diesel), body type (Combi/liftback), trim (e.g. Style), owners, service history, accidents, new tires..."></textarea>
-                </label>
+            <label>Extra details (recommended)
+                <textarea id="extras" maxlength="300" placeholder="Engine & fuel (e.g. 2.0 TDI diesel), body type (Combi/liftback), trim (e.g. Style), owners, service history, accidents, new tires..."></textarea>
+            </label>
             <button type="submit" id="carSubmit">Get Price & Description</button>
+            <p class="usage-line" data-usage="listing"></p>
         </form>
     </div>
 
@@ -485,6 +517,7 @@ footer {
                 <h3>Suggested Description</h3>
                 <p id="descriptionResult">—</p>
                 <p class="error-text" id="descriptionError" style="display:none;"></p>
+                <button type="button" id="copyDesc" class="action-btn" style="display:none;">Copy description</button>
             </div>
         </div>
     </div>
@@ -508,6 +541,7 @@ footer {
                     </select>
                 </label>
                 <button type="submit" id="photoSubmit">Enhance Photo</button>
+                <p class="usage-line" data-usage="photo"></p>
             </form>
             <div class="photo-preview-panel" id="photoPreview">
                 <span class="preview-empty">Your enhanced photo will appear here</span>
@@ -545,21 +579,15 @@ footer {
     <p class="copyright">© 2026 Showroom. All rights reserved.</p>
 </footer>
 
+<script src="plan.js"></script>
 <script>
-// Change this to your deployed server URL when you go live
-const API_URL = 'http://localhost:3000';
-
 // POST JSON and return { ok, data }. Never throws on non-2xx responses.
 async function postJSON(path, body) {
-    const res = await fetch(API_URL + path, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
-    });
-    let data = {};
-    try { data = await res.json(); } catch (_) { /* non-JSON response */ }
-    return { ok: res.ok, data };
+    const { ok, data } = await Showroom.api('POST', path, body);
+    return { ok, data };
 }
+
+let lastDescription = '';
 
 document.getElementById('car-form').addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -580,6 +608,7 @@ document.getElementById('car-form').addEventListener('submit', async function(e)
     const descEl = document.getElementById('descriptionResult');
     const priceErr = document.getElementById('priceError');
     const descErr = document.getElementById('descriptionError');
+    const copyBtn = document.getElementById('copyDesc');
     const submitBtn = document.getElementById('carSubmit');
 
     resultsEmpty.style.display = 'none';
@@ -588,6 +617,8 @@ document.getElementById('car-form').addEventListener('submit', async function(e)
     descEl.innerText = 'Generating...';
     priceErr.style.display = 'none';
     descErr.style.display = 'none';
+    copyBtn.style.display = 'none';
+    lastDescription = '';
     submitBtn.disabled = true;
 
     try {
@@ -605,7 +636,10 @@ document.getElementById('car-form').addEventListener('submit', async function(e)
         }
 
         if (desc.ok && desc.data.description) {
-            descEl.innerText = desc.data.description;
+            lastDescription = desc.data.description;
+            descEl.innerText = lastDescription;
+            copyBtn.innerText = 'Copy description';
+            copyBtn.style.display = 'inline-block';
         } else {
             descEl.innerText = '—';
             descErr.innerText = desc.data.error || 'Could not generate the description. Please try again.';
@@ -619,7 +653,25 @@ document.getElementById('car-form').addEventListener('submit', async function(e)
         priceErr.style.display = 'block';
     } finally {
         submitBtn.disabled = false;
+        Showroom.refresh();
     }
+});
+
+document.getElementById('copyDesc').addEventListener('click', async function() {
+    const btn = this;
+    try {
+        await navigator.clipboard.writeText(lastDescription);
+    } catch (_) {
+        // Fallback for browsers that block the clipboard API
+        const ta = document.createElement('textarea');
+        ta.value = lastDescription;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        ta.remove();
+    }
+    btn.innerText = 'Copied!';
+    setTimeout(() => { btn.innerText = 'Copy description'; }, 1500);
 });
 
 document.getElementById('photoInput').addEventListener('change', function() {
@@ -659,7 +711,13 @@ document.getElementById('photo-form').addEventListener('submit', async function(
             });
 
             if (ok && data.image) {
-                previewDiv.innerHTML = `<img alt="Enhanced car photo" src="data:${data.mimeType};base64,${data.image}">`;
+                const ext = data.mimeType === 'image/png' ? 'png' : data.mimeType === 'image/webp' ? 'webp' : 'jpg';
+                const src = `data:${data.mimeType};base64,${data.image}`;
+                previewDiv.innerHTML = `
+                    <div class="photo-result">
+                        <img alt="Enhanced car photo" src="${src}">
+                        <a class="action-btn" href="${src}" download="showroom-photo.${ext}">Download photo</a>
+                    </div>`;
             } else {
                 const msg = document.createElement('span');
                 msg.className = 'preview-empty';
@@ -672,6 +730,7 @@ document.getElementById('photo-form').addEventListener('submit', async function(
             previewDiv.innerHTML = '<span class="preview-empty">Could not reach the server. Is it running?</span>';
         } finally {
             submitBtn.disabled = false;
+            Showroom.refresh();
         }
     };
     reader.readAsDataURL(file);
